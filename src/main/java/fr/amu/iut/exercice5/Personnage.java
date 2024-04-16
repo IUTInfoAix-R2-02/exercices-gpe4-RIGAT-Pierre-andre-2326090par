@@ -54,6 +54,13 @@ class Personnage extends Group {
         //  *   |   *
         //   *  |  *
         //    *****
+        //déplacement v
+        if (getLayoutY() < hauteurJeu - LARGEUR_PERSONNAGE) {
+            setLayoutY(getLayoutY() + LARGEUR_PERSONNAGE);
+        }
+        if (!direction.equals("bas")) {
+            direction = "bas";
+        }
 
     }
 
@@ -63,7 +70,13 @@ class Personnage extends Group {
         //  *   |   *
         //   *     *
         //    *****
-
+        //déplacement
+        if (getLayoutY() >= LARGEUR_PERSONNAGE) {
+            setLayoutY(getLayoutY() - LARGEUR_PERSONNAGE);
+        }
+        if (!direction.equals("haut")) {
+            direction = "haut";
+        }
     }
 
     boolean estEnCollision(Personnage autrePersonnage) {
@@ -71,4 +84,8 @@ class Personnage extends Group {
                 || autrePersonnage.getBoundsInParent().contains(getBoundsInParent());
     }
 
+    boolean estEnCollision(Obstacle autre) {
+        return getBoundsInParent().contains(autre.getBoundsInParent())
+                || autre.getBoundsInParent().contains(getBoundsInParent());
+    }
 }
