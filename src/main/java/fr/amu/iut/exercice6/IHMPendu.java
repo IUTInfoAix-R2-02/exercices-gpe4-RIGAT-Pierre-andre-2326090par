@@ -12,7 +12,10 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
+import java.util.ArrayList;
 import java.util.Objects;
+
+import static javafx.application.Platform.exit;
 
 public class IHMPendu extends Application {
 
@@ -400,22 +403,17 @@ public class IHMPendu extends Application {
 
     private void joue(){
         char c = lettresTrouvee.charAt(lettresTrouvee.length() - 1);
-        if (in(c, motADeviner)) {
+        ArrayList<Integer> list = dico.getPositions(c, motADeviner);
+        if (!list.isEmpty()) {
             char[] charArray = motStr.toCharArray();
-            for (int i = 0; i < motADeviner.length(); ++i)
-                if (motADeviner.charAt(i) == c) charArray[i] = c;
+            for (int i = 0; i < list.size(); i++) {
+                int elem = list.get(i);
+                charArray[elem] = c;
+            }
             motStr = new String(charArray);
-        } else {
-            --vie;
-        }
+        } else --vie;
         updateScreen();
         gameover();
-    }
-
-    private boolean in(char c, String s){
-        for (int i = 0; i < s.length(); ++i)
-            if (s.charAt(i) == c) return true;
-        return false;
     }
 
     private void updateScreen(){
@@ -425,9 +423,16 @@ public class IHMPendu extends Application {
         updateVie();
     }
 
-    private void gameover(){
-        if (motStr.equals(motADeviner))
+    private void gameover() {
+        if (motStr.equals(motADeviner)) {
             pendu.setImage(gagne);
+            System.out.println("gagné !");
+        }
+        if (vie <= 0) {
+            pendu.setImage(perdu);
+            System.out.println("perdu, le mot c'était " + motADeviner);
+            System.exit(0);
+        }
     }
 
     public static void main(String[] args) {

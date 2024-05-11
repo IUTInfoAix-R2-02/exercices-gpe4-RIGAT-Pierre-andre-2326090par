@@ -7,9 +7,6 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
-import java.util.Timer;
-import java.util.TimerTask;
-
 public class JeuMain extends Application {
 
     private Scene scene;
