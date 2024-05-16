@@ -1,6 +1,7 @@
 package fr.amu.iut.exercice6;
 
 import javafx.application.Application;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.Button;
@@ -69,6 +70,8 @@ public class IHMPendu extends Application {
     private final Button x = new Button("x");
     private final Button y = new Button("y");
     private final Button z = new Button("z");
+
+    private final VBox lettres = new VBox();
 
     private final Button rejoue = new Button("Rejouer");
 
@@ -287,7 +290,7 @@ public class IHMPendu extends Application {
     private void restart(){
         motADeviner = dico.getMot();
         motStr = motADeviner.replaceAll("[abcdefghijklmnopqrstuvwxyz]", "*");
-        vie = 7;
+        if (vie != 7) vie += 7;
         a.setText("a");
         b.setText("b");
         c.setText("c");
@@ -358,13 +361,19 @@ public class IHMPendu extends Application {
         voyelle.getChildren().addAll(
                 a, e, i, o, u, y
         );
+        voyelle.setAlignment(Pos.CENTER);
 
         consonne1.getChildren().addAll(
                 b, c, d, f, g, h, j, k, l, m
         );
+        consonne1.setAlignment(Pos.CENTER);
+
         consonne2.getChildren().addAll(
                 n, p, q, r, s, t, v, w, x, z
         );
+        consonne2.setAlignment(Pos.CENTER);
+
+        lettres.getChildren().addAll(voyelle, consonne1, consonne2);
 
         rejoue.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> restart());
 
@@ -372,11 +381,11 @@ public class IHMPendu extends Application {
                 pendu,
                 nbVie,
                 mot,
-                voyelle,
-                consonne1,
-                consonne2,
+                lettres,
                 rejoue
         );
+        vBox.setAlignment(Pos.CENTER);
+        vBox.setSpacing(10.0);
 
         root.setCenter(vBox);
 
@@ -425,10 +434,12 @@ public class IHMPendu extends Application {
             pendu.setImage(gagne);
             System.out.println("gagné !");
         }
-        if (vie <= 0) {
-            pendu.setImage(perdu);
+        if (vie == 0) {
             System.out.println("perdu, le mot c'était " + motADeviner);
-            System.exit(0);
+            long chrono = System.currentTimeMillis();
+            while (true) {
+                if (System.currentTimeMillis() - chrono > 3000) System.exit(0);
+            }
         }
     }
 
