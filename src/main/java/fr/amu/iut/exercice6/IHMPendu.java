@@ -15,8 +15,6 @@ import javafx.stage.Stage;
 import java.util.ArrayList;
 import java.util.Objects;
 
-import static javafx.application.Platform.exit;
-
 public class IHMPendu extends Application {
 
     Image gagne = new Image(Objects.requireNonNull(IHMPendu.class.getResource("/exercice6/penduWin.png")).toString());
@@ -406,8 +404,7 @@ public class IHMPendu extends Application {
         ArrayList<Integer> list = dico.getPositions(c, motADeviner);
         if (!list.isEmpty()) {
             char[] charArray = motStr.toCharArray();
-            for (int i = 0; i < list.size(); i++) {
-                int elem = list.get(i);
+            for (int elem : list) {
                 charArray[elem] = c;
             }
             motStr = new String(charArray);
