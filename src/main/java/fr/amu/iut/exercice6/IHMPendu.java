@@ -290,7 +290,7 @@ public class IHMPendu extends Application {
     private void restart(){
         motADeviner = dico.getMot();
         motStr = motADeviner.replaceAll("[abcdefghijklmnopqrstuvwxyz]", "*");
-        if (vie < 7) vie += 7;
+        vie = 7;
         a.setText("a");
         b.setText("b");
         c.setText("c");
