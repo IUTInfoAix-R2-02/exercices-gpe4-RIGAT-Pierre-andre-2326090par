@@ -23,7 +23,7 @@ public class LoginControl extends GridPane {
     @FXML
     private void okClicked() {
         System.out.println("ID: " + username.getText());
-        System.out.println("Password: " + pwd.getText());
+        System.out.println("Password: " + pwd.getText().replaceAll(".", "*"));
     }
 
     @FXML
