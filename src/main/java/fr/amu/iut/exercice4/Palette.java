@@ -32,22 +32,16 @@ public class Palette extends Application {
     private void vertClick() {
         label.setText("Vert choisi " + ++nbVert + " fois");
         panneau.setStyle("-fx-background-color: #0f0");
-        nbRouge = 0;
-        nbBleu = 0;
     }
 
     private void rougeClick() {
         label.setText("Rouge choisi " + ++nbRouge + " fois");
         panneau.setStyle("-fx-background-color: #f00");
-        nbBleu = 0;
-        nbVert = 0;
     }
 
     private void bleuClick() {
         label.setText("Bleu choisi " + ++nbBleu + " fois");
         panneau.setStyle("-fx-background-color: #00f");
-        nbRouge = 0;
-        nbVert = 0;
     }
 
     @Override

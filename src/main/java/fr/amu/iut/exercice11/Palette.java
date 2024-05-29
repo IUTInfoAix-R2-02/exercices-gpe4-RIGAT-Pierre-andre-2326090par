@@ -49,24 +49,18 @@ public class Palette extends Application {
         message.set(vert.getText());
         nbfois.set(++nbVert);
         couleurPanneau.set("#0f0");
-        nbRouge = 0;
-        nbBleu = 0;
     }
 
     private void rougeClick() {
         message.set(rouge.getText());
         nbfois.set(++nbRouge);
         couleurPanneau.set("#f00");
-        nbBleu = 0;
-        nbVert = 0;
     }
 
     private void bleuClick() {
         message.set(bleu.getText());
         nbfois.set(++nbBleu);
         couleurPanneau.set("#00f");
-        nbRouge = 0;
-        nbVert = 0;
     }
 
     private void createBindings() {
