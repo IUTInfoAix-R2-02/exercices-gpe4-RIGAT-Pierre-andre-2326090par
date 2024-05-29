@@ -2,7 +2,6 @@ package fr.amu.iut.exercice12;
 
 import javafx.application.Application;
 import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -12,7 +11,6 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
@@ -40,7 +38,7 @@ public class Palette extends Application {
     public void start(Stage primaryStage) {
         root = new BorderPane();
 
-        texteDuHaut = new Label();
+        texteDuHaut = new Label("Cliquez sur un Bouton");
         texteDuHaut.setFont(Font.font("Tahoma", FontWeight.NORMAL, 20));
         BorderPane.setAlignment(texteDuHaut, Pos.CENTER);
 
@@ -61,12 +59,10 @@ public class Palette extends Application {
         rouge = new CustomButton("Rouge", "#F21411");
         bleu = new CustomButton("Bleu", "#3273A4");
 
-        // Define the event handler for button clicks
         vert.setOnAction(event -> handleButtonClick(event));
         rouge.setOnAction(event -> handleButtonClick(event));
         bleu.setOnAction(event -> handleButtonClick(event));
 
-        // Define the ChangeListener for nbClics
         nbClicsListener = (observable, oldValue, newValue) -> {
             if (sourceOfEvent != null) {
                 texteDuHaut.setText(sourceOfEvent.getText() + " cliqué " + newValue + " fois");
@@ -76,7 +72,6 @@ public class Palette extends Application {
             }
         };
 
-        // Attach the listener to the nbClics properties
         vert.nbClicsProperty().addListener(nbClicsListener);
         rouge.nbClicsProperty().addListener(nbClicsListener);
         bleu.nbClicsProperty().addListener(nbClicsListener);
