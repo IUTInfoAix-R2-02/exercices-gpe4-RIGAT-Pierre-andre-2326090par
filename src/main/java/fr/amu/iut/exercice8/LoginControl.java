@@ -15,12 +15,6 @@ public class LoginControl extends GridPane {
     private PasswordField pwd;
 
     @FXML
-    private Button okButton;
-
-    @FXML
-    private Button cancelButton;
-
-    @FXML
     private void okClicked() {
         System.out.println("ID: " + username.getText());
         System.out.println("Password: " + pwd.getText().replaceAll(".", "*"));
